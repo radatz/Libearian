@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-//import 'login_page.dart';
+import 'package:flutterloginproject/user.dart';
 import 'auth.dart';
 import 'root.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -17,13 +18,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return new MaterialApp(
-        debugShowCheckedModeBanner: false,
-      title: 'Loogin page',
-      theme: new ThemeData(
+    return StreamProvider<User>.value(
+      value: Auth().user,
+      child: new MaterialApp(
+          debugShowCheckedModeBanner: false,
+        title: 'Loogin page',
+        theme: new ThemeData(
 
+        ),
+        home: new RootPage(auth: new Auth())
       ),
-      home: new RootPage(auth: new Auth())
     );
   }
 }

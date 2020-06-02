@@ -3,7 +3,11 @@
 ///////////////////Houses the  Firebase authentication methoods
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutterloginproject/user.dart';
 import 'dart:async';
+import 'database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutterloginproject/database.dart';
 
 abstract class BaseAuth{
   Future<String> signInWithEmailAndPassword(String email, String password);
@@ -15,6 +19,15 @@ abstract class BaseAuth{
 
 class Auth implements BaseAuth {
 
+  //create user obj
+  User _userFromFirebaseUser(FirebaseUser user) {
+    return user != null ? User(uid: user.uid) : null;
+  }
+
+  // change user stream
+  Stream<User> get user {
+    return FirebaseAuth.instance.onAuthStateChanged.map(_userFromFirebaseUser);
+  }
 
   Future<String> signInWithEmailAndPassword(String email, String password)async {
     AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
@@ -25,6 +38,7 @@ class Auth implements BaseAuth {
   Future<String> createUserWithEmailAndPassword(String email, String password) async {
     AuthResult result = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
     FirebaseUser user = result.user;
+    await Database(uid: user.uid).updateUserData('new user', 'book');
     user.sendEmailVerification();
     return user.uid;
   }

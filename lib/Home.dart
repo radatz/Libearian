@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'auth.dart';
+import './NavDrawer.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({this.auth, this.onSignedOut}); // <=== Class Homepage, Istantiates Constructor auth.dart, and voidcallback
@@ -24,10 +25,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new FlatButton(
-        child: new Text('Logout', ),
-        onPressed: _signOut,// This buttoon can be removed while designing assets, just make sure to include a button or inkwell with "onPressed: SignOut" this is important for functionality
-      )
+        appBar: AppBar(
+          title: Text('Home Page'),
+        ),
+        drawer: NavDrawer(),
+        body: new FlatButton(
+          child: new Text('Logout', ),
+          onPressed: _signOut,// This buttoon can be removed while designing assets, just make sure to include a button or inkwell with "onPressed: SignOut" this is important for functionality
+        )
 
       // My suggestion would be to look at the way loginPagees build was designed, and factor out seperate sections, for buttons, text,images, etc. That way all we have
       // To do is to call in the individual pieces, and can reload seperate pages using the same assets in diffrent arrangesments ( Note: this is just a suggestion)
