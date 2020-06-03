@@ -3,6 +3,7 @@ import 'package:flutterloginproject/user.dart';
 import 'auth.dart';
 import 'root.dart';
 import 'package:provider/provider.dart';
+import 'package:flutterloginproject/Profile_page.dart';
 
 
 
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       child: new MaterialApp(
           debugShowCheckedModeBanner: false,
         title: 'Loogin page',
+        routes: {
+            '/Profile' : (context) => Profile(),
+        },
         theme: new ThemeData(
 
         ),
