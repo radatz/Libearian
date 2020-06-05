@@ -24,6 +24,7 @@ class Auth implements BaseAuth {
     return user != null ? User(uid: user.uid) : null;
   }
 
+
   // change user stream
   Stream<User> get user {
     return FirebaseAuth.instance.onAuthStateChanged.map(_userFromFirebaseUser);
@@ -38,8 +39,8 @@ class Auth implements BaseAuth {
   Future<String> createUserWithEmailAndPassword(String email, String password) async {
     AuthResult result = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
     FirebaseUser user = result.user;
-    await Database(uid: user.uid).updateUserData('new user', 'book');
     user.sendEmailVerification();
+    //await Database(uid: user.uid).updateUserData('new user', 'book');
     return user.uid;
   }
 

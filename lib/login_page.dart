@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
+import 'database.dart';
 
 class Loginpage extends StatefulWidget {
 
@@ -61,6 +62,7 @@ class _LoginPageState extends State<Loginpage>
           String userID = await widget.auth.createUserWithEmailAndPassword(_email, _password);
           print('Registered: $userID');
           widget.onSignedIn();
+          await Database(uid: userID).updateUserData('new user', 'book');
 
         }
 

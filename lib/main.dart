@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
             '/Profile' : (context) => Profile(),
           '/Rentals' : (context) => Rentals(),
           '/Favorites' : (context) => Favorites(),
+
         },
         theme: new ThemeData(
 
