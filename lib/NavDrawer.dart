@@ -74,6 +74,18 @@ class NavDrawer extends StatelessWidget {
                   ListTile(
                     leading: Icon(Icons.person),
                     title: Text(
+                      'Favorites',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/Favorites');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text(
                       'Profile',
                       style: TextStyle(
                         fontSize: 18,

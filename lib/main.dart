@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterloginproject/favorites.dart';
 import 'package:flutterloginproject/rentals.dart';
 import 'package:flutterloginproject/user.dart';
 import 'auth.dart';
@@ -28,8 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
             '/Profile' : (context) => Profile(),
           '/Rentals' : (context) => Rentals(),
-
-
+          '/Favorites' : (context) => Favorites(),
         },
         theme: new ThemeData(
 
