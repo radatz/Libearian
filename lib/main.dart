@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterloginproject/rentals.dart';
 import 'package:flutterloginproject/user.dart';
 import 'auth.dart';
 import 'root.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
         title: 'Loogin page',
         routes: {
             '/Profile' : (context) => Profile(),
+          '/Rentals' : (context) => Rentals(),
+
+
         },
         theme: new ThemeData(
 

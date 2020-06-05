@@ -62,6 +62,18 @@ class NavDrawer extends StatelessWidget {
                   ListTile(
                     leading: Icon(Icons.person),
                     title: Text(
+                      'Rentals',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/Rentals');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text(
                       'Profile',
                       style: TextStyle(
                         fontSize: 18,
