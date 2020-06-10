@@ -1,16 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterloginproject/user.dart';
 import 'package:provider/provider.dart';
 import 'package:flutterloginproject/database.dart';
-import 'package:flutterloginproject/auth.dart';
-import 'package:flutterloginproject/book.dart';
 
-import 'Profile_page.dart';
+import 'load.dart';
 
 class NavDrawer extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
 
     final user = Provider.of<User>(context);
 
@@ -18,9 +17,12 @@ class NavDrawer extends StatelessWidget {
       stream: Database(uid: user.uid).userData,
       builder: (context, snapshot) {
 
-          UserData userData = snapshot.data;
+        UserData userData = snapshot.data;
+
+        if(snapshot.hasData){
 
           return Drawer(
+
               child: Column(
                 children: <Widget>[
                   Container(
@@ -118,6 +120,9 @@ class NavDrawer extends StatelessWidget {
                 ],
               )
           );
+        } else {
+          return Load();
+        }
       }
     );
   }

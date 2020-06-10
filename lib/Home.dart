@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
 // When creating methods, if the method is NOT specific to the home screen, consider making a seperate file with methods that you can call in.
   // For example, the auth.dart file contains All of the current firebase methods that have been called. Those methods were then imported into login-page, main, and root, home
   // this allows those methods to be called in and used in those files.
-  void _signOut()async{// This is the sign-out method, this method is called with the FlatButton below, and will sign the user out it is an Asynch method
+  void signOut()async{// This is the sign-out method, this method is called with the FlatButton below, and will sign the user out it is an Asynch method
     try {
       await auth.signOut();
       onSignedOut();
@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
         drawer: NavDrawer(),
         body: new FlatButton(
           child: new Text('Logout', ),
-          onPressed: _signOut,// This buttoon can be removed while designing assets, just make sure to include a button or inkwell with "onPressed: SignOut" this is important for functionality
+          onPressed: signOut,// This buttoon can be removed while designing assets, just make sure to include a button or inkwell with "onPressed: SignOut" this is important for functionality
         )
 
       // My suggestion would be to look at the way loginPagees build was designed, and factor out seperate sections, for buttons, text,images, etc. That way all we have
