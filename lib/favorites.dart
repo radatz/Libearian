@@ -20,6 +20,7 @@ class Favorites extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text('Favorites Page'),
+                backgroundColor: Color.fromRGBO(181, 154, 87, 1),
               ),
               drawer: NavDrawer(),
             );

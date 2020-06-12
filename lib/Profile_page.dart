@@ -20,8 +20,22 @@ class Profile extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text('Profile Page'),
+                backgroundColor: Color.fromRGBO(181, 154, 87, 1),
               ),
               drawer: NavDrawer(),
+              /*body: new Stack(
+                children: <Widget>[
+                  ClipPath(
+                    child: Container(
+                      color: Colors.orangeAccent,
+                    ),
+                  ),
+                  Positioned(
+                    width: 350.0,
+                    height: MediaQuery.of(context).size.height / 5,
+                  )
+                ],
+              ),*/
             );
           }
           else {

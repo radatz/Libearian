@@ -20,6 +20,7 @@ class Rentals extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text('Rental Page'),
+                backgroundColor: Color.fromRGBO(181, 154, 87, 1),
               ),
               drawer: NavDrawer(),
             );

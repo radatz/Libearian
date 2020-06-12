@@ -3,6 +3,7 @@ import 'package:flutterloginproject/favorites.dart';
 import 'package:flutterloginproject/rentals.dart';
 import 'package:flutterloginproject/user.dart';
 import 'auth.dart';
+import 'load.dart';
 import 'root.dart';
 import 'package:provider/provider.dart';
 import 'package:flutterloginproject/Profile_page.dart';

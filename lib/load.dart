@@ -5,7 +5,7 @@ class Load extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.orangeAccent,
+      color: Color.fromRGBO(181, 154, 87, 1),
       child: Center(
         child: SpinKitWanderingCubes(
           color: Colors.white,

@@ -27,12 +27,13 @@ class HomePage extends StatelessWidget {
     return new Scaffold(
         appBar: AppBar(
           title: Text('Home Page'),
+          backgroundColor: Color.fromRGBO(181, 154, 87, 1),
         ),
         drawer: NavDrawer(),
-        body: new FlatButton(
+        /*body: new FlatButton(
           child: new Text('Logout', ),
           onPressed: signOut,// This buttoon can be removed while designing assets, just make sure to include a button or inkwell with "onPressed: SignOut" this is important for functionality
-        )
+        )*/
 
       // My suggestion would be to look at the way loginPagees build was designed, and factor out seperate sections, for buttons, text,images, etc. That way all we have
       // To do is to call in the individual pieces, and can reload seperate pages using the same assets in diffrent arrangesments ( Note: this is just a suggestion)

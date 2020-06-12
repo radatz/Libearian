@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterloginproject/user.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +10,7 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
+    ErrorWidget.builder = (FlutterErrorDetails details) => Load(); //signout error
     final user = Provider.of<User>(context);
 
     return StreamBuilder<UserData>(
@@ -28,9 +28,7 @@ class NavDrawer extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(20),
-                    color: Theme
-                        .of(context)
-                        .primaryColor,
+                    color: Color.fromRGBO(181, 154, 87, 1),
                     child: Center(
                       child: Column(
                         children: <Widget>[
@@ -62,7 +60,22 @@ class NavDrawer extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    leading: Icon(Icons.person),
+                    leading:Icon(Icons.home),
+                    title: Text(
+                      'Home',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    onTap: (){
+                      Navigator.popUntil(context, ModalRoute.withName("/"));// Creates a route that blocks interaction with previous routes
+                      print('You have succesfully returned to home');
+
+                      // Clears all current routes and pushes to homepage, I am unsure if it actually clears all the routes but it says it does in the syntax i looked up
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.book),
                     title: Text(
                       'Rentals',
                       style: TextStyle(
@@ -74,7 +87,7 @@ class NavDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.person),
+                    leading: Icon(Icons.favorite),
                     title: Text(
                       'Favorites',
                       style: TextStyle(
@@ -86,7 +99,7 @@ class NavDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.person),
+                    leading: Icon(Icons.settings),
                     title: Text(
                       'Profile',
                       style: TextStyle(
@@ -98,16 +111,6 @@ class NavDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text(
-                      'Settings',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                    onTap: null,
-                  ),
-                  ListTile(
                     leading: Icon(Icons.arrow_back),
                     title: Text(
                       'Logout',
@@ -115,7 +118,12 @@ class NavDrawer extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),
-                    onTap: null,
+                    onTap: () async {
+                      await FirebaseAuth.instance.signOut();
+
+                      print('you have successfully logged out');
+                      Navigator.of(context).pushReplacementNamed('/');// This might be causing a problem?
+                    },
                   ),
                 ],
               )
