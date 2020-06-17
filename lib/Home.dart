@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutterloginproject/screens/book_details_screen.dart';
+import 'package:flutterloginproject/screens/books_overview_screen.dart';
 import 'auth.dart';
 import './NavDrawer.dart';
+import 'package:provider/provider.dart';
+import 'package:flutterloginproject/widgets/books_grid.dart';
+import 'package:flutterloginproject/providers/books.dart';
+import 'package:flutterloginproject/Profile_page.dart';
+import 'package:flutterloginproject/rentals.dart';
+
+import 'favorites.dart';
+
 
 class HomePage extends StatelessWidget {
   HomePage({this.auth, this.onSignedOut}); // <=== Class Homepage, Istantiates Constructor auth.dart, and voidcallback
@@ -21,25 +31,30 @@ class HomePage extends StatelessWidget {
 
 
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: AppBar(
-          title: Text('Home Page'),
-          backgroundColor: Color.fromRGBO(181, 154, 87, 1),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: Books(),
         ),
-        drawer: NavDrawer(),
-        /*body: new FlatButton(
-          child: new Text('Logout', ),
-          onPressed: signOut,// This buttoon can be removed while designing assets, just make sure to include a button or inkwell with "onPressed: SignOut" this is important for functionality
-        )*/
-
-      // My suggestion would be to look at the way loginPagees build was designed, and factor out seperate sections, for buttons, text,images, etc. That way all we have
-      // To do is to call in the individual pieces, and can reload seperate pages using the same assets in diffrent arrangesments ( Note: this is just a suggestion)
-
-
-      );
+      ],
+      child: MaterialApp(
+          title: 'Libearian',
+          theme: ThemeData(
+            primarySwatch: Colors.yellow,
+            accentColor: Colors.deepOrange,
+            fontFamily: 'Lato',
+          ),
+          home: BooksOverviewScreen(),
+          routes: {
+            '/Profile' : (context) => Profile(),
+            '/Rentals' : (context) => Rentals(),
+            '/Favorites' : (context) => Favorites(),
+            BookDetailScreen.routeName: (ctx) => BookDetailScreen(),
+          }),
+    );
 
 
 

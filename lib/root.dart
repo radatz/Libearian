@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterloginproject/Home.dart';
+import 'package:flutterloginproject/screens/books_overview_screen.dart';
 import 'login_page.dart';
 import 'auth.dart';
 import 'Home.dart';
@@ -52,10 +53,7 @@ class _RootPageState extends State<RootPage>{
         return new Loginpage(auth: widget.auth, onSignedIn: _signedIn );
       case AuthStatus.signedIn:
 
-        return new HomePage(
-          auth: widget.auth,
-          onSignedOut: _signedOut,
-        );
+        return new BooksOverviewScreen();
     }
     return new Loginpage(auth: widget.auth);
   }
