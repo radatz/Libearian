@@ -41,9 +41,7 @@ class NavDrawer extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                image: NetworkImage(
-                                    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-                                ),
+                                image: NetworkImage(userData.pic),
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -54,7 +52,7 @@ class NavDrawer extends StatelessWidget {
                               fontSize: 22,
                             ),
                           ),
-                          Text('username@Email.com'),
+                          Text(userData.email),
                         ],
                       ),
                     ),
