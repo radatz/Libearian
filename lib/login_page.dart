@@ -62,7 +62,7 @@ class _LoginPageState extends State<Loginpage>
           String userID = await widget.auth.createUserWithEmailAndPassword(_email, _password);
           print('Registered: $userID');
           widget.onSignedIn();
-          await Database(uid: userID).updateUserData('new user', _email, 'phone', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
+          await Database(uid: userID).updateUserData('new user', _email, 'phone', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', false);
 
         }
 

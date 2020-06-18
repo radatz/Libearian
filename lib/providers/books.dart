@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -104,4 +105,42 @@ class Books with ChangeNotifier {
     }
     existingProduct = null;
   }
+
+}
+
+class Book2 {
+  final String id;
+
+  Book2({ this.id });
+
+  final CollectionReference pageCollection = Firestore.instance.collection('purchasedBooks');
+
+  Book _bookSnapshot(DocumentSnapshot snapshot) {
+    return Book(
+        id: id,
+        title: snapshot.data['title'],
+        author: snapshot.data['author'],
+        description: snapshot.data['description'],
+        price: snapshot.data['price'],
+        imageUrl: snapshot.data['imageUrl']
+    );
+  }
+
+  Stream<Book> get collection {
+    return pageCollection.document(id).snapshots().map(_bookSnapshot);
+
+
+  }
+
+  List<Book> _items = [
+  ];
+
+
+  List<Book> get items {
+    // if (_showFavoritesOnly) {
+    //   return _items.where((prodItem) => prodItem.isFavorite).toList();
+    // }
+    return [..._items];
+  }
+
 }

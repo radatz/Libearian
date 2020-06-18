@@ -5,9 +5,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterloginproject/user.dart';
 import 'dart:async';
-import 'database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutterloginproject/database.dart';
 
 abstract class BaseAuth{
   Future<String> signInWithEmailAndPassword(String email, String password);

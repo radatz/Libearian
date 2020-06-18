@@ -12,6 +12,7 @@ class UserData {
   final String email;
   final String phone;
   final String pic;
+  final bool isAdmin;
 
-  UserData({ this.uid, this.name, this.email, this.phone, this.pic});
+  UserData({ this.uid, this.name, this.email, this.phone, this.pic, this.isAdmin});
 }

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterloginproject/database.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/books.dart';
@@ -21,6 +23,7 @@ class BookDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedProduct.title),
+        backgroundColor: Color.fromRGBO(181, 154, 87, 1),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -52,7 +55,13 @@ class BookDetailScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 softWrap: true,
               ),
-            )
+            ),
+            FlatButton(
+              child: Text('purchase'),
+              onPressed: () async {
+                Database(uid: loadedProduct.id).updateBookData(loadedProduct.id, loadedProduct.title, loadedProduct.author, loadedProduct.description, loadedProduct.price, loadedProduct.imageUrl);
+              },
+            ),
           ],
         ),
       ),

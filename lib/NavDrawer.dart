@@ -73,30 +73,6 @@ class NavDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.book),
-                    title: Text(
-                      'Rentals',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/Rentals');
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.favorite),
-                    title: Text(
-                      'Favorites',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/Favorites');
-                    },
-                  ),
-                  ListTile(
                     leading: Icon(Icons.settings),
                     title: Text(
                       'Profile',
@@ -120,7 +96,7 @@ class NavDrawer extends StatelessWidget {
                       await FirebaseAuth.instance.signOut();
 
                       print('you have successfully logged out');
-                      Navigator.of(context).pushReplacementNamed('/');// This might be causing a problem?
+                      Navigator.of(context).pushReplacementNamed('/'); // This might be causing a problem?
                     },
                   ),
                 ],

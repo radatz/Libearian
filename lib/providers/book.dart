@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,6 +20,5 @@ class Book with ChangeNotifier {
     @required this.price,
     @required this.imageUrl,
   });
-
 
 }

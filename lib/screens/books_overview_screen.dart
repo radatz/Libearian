@@ -1,8 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../NavDrawer.dart';
+import '../StudentNavDrawer.dart';
+import '../database.dart';
+import '../user.dart';
 import '../widgets/books_grid.dart';
 import '../providers/books.dart';
+import 'package:flutterloginproject/database.dart';
+import 'package:flutterloginproject/user.dart';
 
 enum FilterOptions {
   Favorites,
@@ -46,39 +52,47 @@ class _BooksOverviewScreenState extends State<BooksOverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Libearian'),
-        backgroundColor: Color.fromRGBO(181, 154, 87, 1),
-        actions: <Widget>[
-          PopupMenuButton(
-            onSelected: (FilterOptions selectedValue) {
-              setState(() {
-                if (selectedValue == FilterOptions.Favorites) {
-                  _showOnlyFavorites = true;
-                } else {
-                  _showOnlyFavorites = false;
-                }
-              });
-            },
-            icon: Icon(
-              Icons.more_vert,
+    final user = Provider.of<User>(context);
+
+    return StreamBuilder<UserData>(
+        stream: Database(uid: user.uid).userData,
+        builder: (context, snapshot) {
+
+          UserData userData = snapshot.data;
+
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Libearian'),
+              backgroundColor: Color.fromRGBO(181, 154, 87, 1),
+              actions: <Widget>[
+
+                PopupMenuButton(
+                  onSelected: (FilterOptions selectedValue) async {
+                    await FirebaseAuth.instance.signOut();
+
+                    print('you have successfully logged out');
+                    Navigator.of(context).pushReplacementNamed('/');
+                  },
+                  icon: Icon(
+                    Icons.more_vert,
+                  ),
+                  itemBuilder: (_) => [
+                    PopupMenuItem(
+                      child: Text('Only Favorites'),
+                      value: FilterOptions.Favorites,
+                    ),
+                    PopupMenuItem(
+                      child: Text('Show All'),
+                      value: FilterOptions.All,
+                    ),
+                  ],
+                ),
+              ],
             ),
-            itemBuilder: (_) => [
-              PopupMenuItem(
-                child: Text('Only Favorites'),
-                value: FilterOptions.Favorites,
-              ),
-              PopupMenuItem(
-                child: Text('Show All'),
-                value: FilterOptions.All,
-              ),
-            ],
-          ),
-        ],
-      ),
-      drawer: NavDrawer(),
-      body: BooksGrid(),
+            drawer: userData.isAdmin ? NavDrawer() : StudentNavDrawer(),
+            body: BooksGrid(),
+          );
+        }
     );
   }
 }

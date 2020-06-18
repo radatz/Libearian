@@ -17,6 +17,7 @@ class _ProfileNameState extends State<ProfileName> {
   String _currentEmail;
   String _currentPhone;
   String _currentPic;
+  bool _isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,7 @@ class _ProfileNameState extends State<ProfileName> {
                         _currentEmail ?? userData.email,
                         _currentPhone ?? userData.phone,
                         _currentPic ?? userData.pic,
+                        _isAdmin ?? userData.isAdmin,
                       );
                     }
                   },
@@ -83,6 +85,7 @@ class _ProfileEmailState extends State<ProfileEmail> {
   String _currentEmail;
   String _currentPhone;
   String _currentPic;
+  bool _isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +124,7 @@ class _ProfileEmailState extends State<ProfileEmail> {
                           _currentEmail ?? userData.email,
                           _currentPhone ?? userData.phone,
                           _currentPic ?? userData.pic,
+                          _isAdmin ?? userData.isAdmin,
                         );
                       }
                     },
@@ -149,6 +153,7 @@ class _ProfilePhoneState extends State<ProfilePhone> {
   String _currentEmail;
   String _currentPhone;
   String _currentPic;
+  bool _isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +192,7 @@ class _ProfilePhoneState extends State<ProfilePhone> {
                           _currentEmail ?? userData.email,
                           _currentPhone ?? userData.phone,
                           _currentPic ?? userData.pic,
+                          _isAdmin ?? userData.isAdmin,
                         );
                       }
                     },
@@ -215,6 +221,7 @@ class _ProfilePicState extends State<ProfilePic> {
   String _currentEmail;
   String _currentPhone;
   String _currentPic;
+  bool _isAdmin;
 
   @override
   Widget build(BuildContext context) {
@@ -253,6 +260,7 @@ class _ProfilePicState extends State<ProfilePic> {
                           _currentEmail ?? userData.email,
                           _currentPhone ?? userData.phone,
                           _currentPic ?? userData.pic,
+                          _isAdmin ?? userData.isAdmin,
                         );
                       }
                     },
